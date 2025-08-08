@@ -1,0 +1,24 @@
+<button (click)="formulario()">{{ !visible ? "+" : "X" }}</button>
+<div *ngIf="visible" class="form">
+  <form [formGroup]="form" (submit)="criar()">
+    <input
+      type="text"
+      class="input"
+      formControlName="nome"
+      placeholder="Titulo"
+    />
+    <input
+      type="text"
+      class="input"
+      formControlName="description"
+      placeholder="descricao"
+    />
+    <input class="button" type="submit" value="criar" />
+  </form>
+</div>
+<main>
+  @for (item of projetosList(); track $index) {
+  <app-card [projeto]="item"></app-card>
+
+  }
+</main>
