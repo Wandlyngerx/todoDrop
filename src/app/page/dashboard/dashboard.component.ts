@@ -21,12 +21,11 @@ export class DashboardComponent {
     this.visible = !this.visible;
   }
   criar() {
-    console.log('testtete');
-    const nome = this.form.value.nome!;
-    const description = this.form.value.description!;
-    this.projectService.criar(nome, description);
-    this.form.value.nome = '';
-    this.form.value.description = '';
+    if (this.form.invalid) return;
+
+    const { nome, description } = this.form.value;
+    this.projectService.criar(nome!, description!);
+    this.form.reset();
     this.visible = false;
   }
 

@@ -61,15 +61,18 @@ export class HomeComponent {
   });
 
   criarTarefa() {
-    if (this.isEdit) {
-      const id = this.taskEdit.id;
-      const nome = this.formulario.value.nome!;
-      this.projectService.editarTarefa(id, nome, this.projetoSelecionado());
-      this.isEdit = false;
-    } else {
-      console.log('else');
-      const nome = this.formulario.value.nome!;
-      this.projectService.addTarefa(nome, this.id!);
+    if (this.formulario.value.nome) {
+      if (this.isEdit) {
+        const id = this.taskEdit.id;
+        const nome = this.formulario.value.nome!;
+        this.projectService.editarTarefa(id, nome, this.projetoSelecionado());
+        this.isEdit = false;
+        this.formulario.reset();
+      } else {
+        const nome = this.formulario.value.nome!;
+        this.projectService.addTarefa(nome, this.id!);
+        this.formulario.reset();
+      }
     }
   }
 
